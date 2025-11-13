@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visa Sponsorship WhatsApp Message</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2em; }
+    label, input, textarea { display: block; margin-bottom: 1em; width: 100%; max-width: 400px; }
+    button { padding: 0.5em 1em; }
+  </style>
+</head>
+<body>
+  <h1>Send Visa Sponsorship Message via WhatsApp</h1>
+  <form id="waForm">
+    <label>
+      Recipient Number<br>
+      <input type="text" id="phone" placeholder="e.g. 15551234567" required>
+    </label>
+    <label>
+      Message<br>
+      <textarea id="message" placeholder="Your message here..." required>Congratulations! You have been shortlisted for our visa sponsorship program.</textarea>
+    </label>
+    <button type="submit">Send on WhatsApp</button>
+  </form>
+
+  <script>
+    document.getElementById('waForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var phone = document.getElementById('phone').value.replace(/\D/g, ''); // Remove non-digits
+      var message = encodeURIComponent(document.getElementById('message').value.trim());
+      if(phone.length < 8) {
+        alert('Please enter a valid phone number (with country code, e.g. 15551234567)');
+        return;
+      }
+      var waLink = 'https://wa.me/' + phone + '?text=' + message;
+      window.open(waLink, '_blank');
+    });
+  </script>
+</body>
+</html>
